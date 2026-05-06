@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso Presencial de IA e Programação | Pirapetinga</title>
+  <meta name="description" content="Aprenda Programação e Inteligência Artificial do zero em Pirapetinga. Turmas reduzidas e projetos práticos desde a primeira aula." />
+  <style>
+    :root {
+      /* Cores baseadas na identidade visual das artes */
+      --bg: #040b17;
+      --bg2: #08162e;
+      --card: rgba(10, 25, 55, 0.75);
+      --card-strong: rgba(14, 34, 74, 0.92);
+      --line: rgba(82, 227, 255, 0.2);
+      --text: #ffffff;
+      --muted: #a8b8d8;
+      --blue: #2563eb;
+      --cyan: #00e5ff;
+      --yellow: #ffc107;
+      --orange: #f97316;
+      --green: #22c55e;
+      --red: #ef4444; 
+      --purple: #8b5cf6;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+      --radius: 24px;
+      --glass: blur(18px);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.15), transparent 24%),
+        radial-gradient(circle at 80% 10%, rgba(255, 193, 7, 0.12), transparent 18%),
+        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Ambient effects */
+    .grid, .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .grid {
+      opacity: 0.08;
+      background-image: linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(900px) rotateX(60deg) translateY(10vh);
+      transform-origin: center top;
+      animation: gridMove 20s linear infinite;
+    }
+    .scanlines {
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.02), transparent);
+      background-size: 100% 4px;
+      opacity: 0.3;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 0 60px, 60px 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 60px;
+    }
+
+    header.hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 80vh;
+      padding-top: 12px;
+      perspective: 1400px;
+    }
+
+    .hero-copy, .hero-visual, .card, .section-card, .price-card, .timeline-item, .game-card {
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      background: linear-gradient(180deg, rgba(14,34,74,.6), rgba(8,22,46,.8));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: heroIn .9s ease-out both;
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 193, 7, 0.15);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      color: var(--yellow);
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: .94;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff 0%, #e0f2fe 40%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .highlight {
+      color: var(--yellow);
+      text-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+    }
+
+    .subheadline {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.18rem);
+      line-height: 1.7;
+      max-width: 64ch;
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .badge {
+      padding: 16px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .badge .icon {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(145deg, rgba(0,229,255,.2), rgba(255,193,7,.1));
+      border: 1px solid rgba(0,229,255,.3);
+      display: grid; place-items: center;
+      flex: 0 0 auto;
+    }
+    .badge strong { display: block; font-size: .98rem; margin-bottom: 4px; color: #fff;}
+    .badge span { color: var(--muted); font-size: .88rem; line-height: 1.4; }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      align-items: center;
+    }
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 24px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: .01em;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .microcopy { color: var(--muted); font-size: .94rem; }
+
+    .hero-visual {
+      min-height: 100%;
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: .84rem;
+    }
+    .chip.yellow { background: rgba(255, 193, 7, 0.15); color: var(--yellow); border-color: rgba(255, 193, 7, 0.3); }
+
+    .tech-room {
+      position: relative;
+      min-height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.05);
+      background: linear-gradient(180deg, rgba(8,22,46,.9), rgba(4,11,23,.95));
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .monitor {
+      position: absolute;
+      border-radius: 12px;
+      background: #040b17;
+      border: 1px solid rgba(0,229,255,.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,.6);
+      overflow: hidden;
+    }
+    .monitor.screen {
+      width: 55%; height: 40%; right: 5%; top: 15%;
+    }
+    .monitor.small1 { width: 35%; height: 30%; left: 8%; top: 35%; }
+    .monitor .bar {
+      height: 8px;
+      background: linear-gradient(90deg, #ef4444, #f59e0b, #22c55e);
+      opacity: .8;
+    }
+    .code-lines {
+      padding: 14px;
+      font-family: monospace;
+      font-size: .85rem;
+      line-height: 1.6;
+      color: #94a3b8;
+    }
+    .code-lines .a { color: var(--cyan); }
+    .code-lines .b { color: var(--yellow); }
+
+    .floating-ui {
+      position: absolute;
+      inset: auto 16px 16px 16px;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .stat-pill {
+      padding: 12px 18px;
+      border-radius: 16px;
+      background: rgba(4,11,23,.85);
+      border: 1px solid rgba(0,229,255,.2);
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-pill strong { color: var(--cyan); font-size: 1.05rem; }
+    .stat-pill span { color: var(--muted); font-size: .85rem; }
+
+    section { margin-top: 24px; }
+    .section-title {
+      margin: 0 0 12px;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: #fff;
+    }
+    .section-subtitle {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 75ch;
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .card { padding: 24px; }
+    .card h3 { margin: 0 0 12px; font-size: 1.15rem; color: var(--cyan); }
+    .card p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .icon-bubble {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: grid; place-items: center;
+      margin-bottom: 16px;
+      background: rgba(0,229,255,.1);
+      border: 1px solid rgba(0,229,255,.2);
+      font-size: 1.4rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .section-card { padding: 30px; }
+
+    /* Timeline Atualizada */
+    .timeline { display: grid; gap: 12px; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 45px;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+      background: dashed 2px rgba(255, 193, 7, 0.3);
+      z-index: 0;
+    }
+    .timeline-item {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.05);
+      z-index: 1;
+    }
+    .phase {
+      font-weight: 900;
+      color: var(--yellow);
+      font-size: 1.8rem;
+      text-align: center;
+      background: var(--bg2);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--orange);
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
+    }
+    .timeline-item strong { display: block; margin-bottom: 6px; font-size: 1.1rem; color: #fff;}
+    .timeline-item span { color: var(--muted); line-height: 1.5; font-size: 0.95rem; }
+    .timeline-footer {
+      text-align: center;
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(0, 229, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+    .timeline-footer p { margin: 0; color: var(--cyan); font-weight: 600; }
+    .timeline-footer span { font-size: 0.9rem; color: var(--muted); }
+
+    /* Professor Card Aprimorado */
+    .teacher-wrap { margin-top: 24px; }
+    .teacher {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .portrait {
+      width: 140px; 
+      height: 140px; /* Transformado em círculo para estética mais moderna */
+      border-radius: 50%; 
+      background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(0,229,255,.2));
+      border: 3px solid var(--purple);
+      display: grid; 
+      place-items: center;
+      overflow: hidden; 
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .teacher-content h3 { margin: 0 0 4px; font-size: 1.6rem; color: var(--cyan); }
+    .teacher-content .subtitle { color: var(--yellow); font-weight: 600; margin-bottom: 12px; font-size: 1rem; }
+    .teacher-content p { margin: 0 0 16px; color: var(--muted); line-height: 1.6; }
+    .credentials { list-style: none; padding: 0; margin: 0; }
+    .credentials li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .credentials li::before {
+      content: '✓';
+      color: var(--cyan);
+      font-weight: bold;
+      background: rgba(0, 229, 255, 0.1);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* Caixa de Preço */
+    .price-card { 
+      padding: 36px 32px; 
+      text-align: center; 
+      background: rgba(14,34,74,.6); 
+      border-color: var(--red); 
+      position: relative;
+    }
+    .price-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg, var(--red), var(--yellow));
+    }
+    .promo-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #dc2626, #ea580c);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+      animation: pulseAlert 2s infinite;
+    }
+    @keyframes pulseAlert {
+      0% { transform: scale(1); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 4px 25px rgba(220, 38, 38, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+    }
+    .old-price {
+      display: block;
+      color: var(--red);
+      font-size: 1.8rem;
+      text-decoration: line-through;
+      font-weight: 700;
+      margin-bottom: -5px;
+      opacity: 0.9;
+    }
+    .price {
+      font-size: clamp(3.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: #fff;
+      margin: 5px 0 15px;
+    }
+    .price small { font-size: 1.2rem; color: var(--cyan); }
+    .price-note { color: var(--muted); line-height: 1.6; margin-bottom: 16px; font-size: 1.05rem;}
+    
+    .certificate-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    /* Jogo da Velha */
+    .game-wrap { margin-top: 24px; }
+    .game-card {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      background: linear-gradient(90deg, rgba(14,34,74,.6), rgba(8,22,46,.9));
+      border-color: var(--yellow);
+    }
+    .game-intro h3 { margin: 0 0 14px; font-size: 1.5rem; color: var(--yellow); }
+    .game-intro p { margin: 0 0 20px; color: var(--muted); line-height: 1.6; font-size: 1.05rem;}
+    
+    .status {
+      margin: 16px 0;
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 1.1rem;
+      min-height: 1.6em;
+    }
+    
+    .game-actions {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;
+    }
+    .mini-btn {
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+    .mini-btn:hover { background: rgba(255,255,255,.15); }
+    .mini-btn.active {
+      background: var(--cyan);
+      color: #000;
+      border-color: var(--cyan);
+    }
+
+    .board-shell {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--bg);
+      border: 1px solid rgba(0,229,255,.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .board {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      border: 1px solid rgba(0,229,255,.2);
+      background: rgba(14,34,74,.6);
+      color: #fff;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .2s ease;
+      user-select: none;
+    }
+    .cell:hover { background: rgba(37,99,235,.4); }
+    .cell.x-mark { color: var(--cyan); }
+    .cell.o-mark { color: var(--yellow); }
+    
+    .cell.win {
+      background: rgba(34,197,94,.2);
+      border-color: var(--green);
+      text-shadow: 0 0 15px var(--green);
+    }
+
+    .footer-cta {
+      margin-top: 24px;
+      padding: 40px;
+      border-radius: 28px;
+      border: 1px solid var(--cyan);
+      background: radial-gradient(circle at center, rgba(14,34,74,.8), var(--bg));
+      text-align: center;
+    }
+    .footer-cta h2 { margin: 0 0 16px; font-size: clamp(1.8rem, 3vw, 2.5rem); color: #fff;}
+    .footer-cta p { margin: 0 auto 24px; color: var(--muted); line-height: 1.7; max-width: 70ch; font-size: 1.1rem;}
+
+    .section-divider {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,229,255,.3), transparent);
+      margin: 30px 0;
+    }
+
+    @media (max-width: 980px) {
+      header.hero, .split, .game-card, .grid-3, .hero-badges, .teacher { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 500px; }
+      .game-card { gap: 20px; padding: 20px;}
+      .timeline::before { left: 35px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 16px, 1180px); }
+      .hero-copy, .section-card, .price-card, .footer-cta { padding: 20px; }
+      .timeline-item { grid-template-columns: 50px 1fr; gap: 12px;}
+      .phase { width: 40px; height: 40px; font-size: 1.2rem;}
+      .timeline::before { left: 40px; }
+      
+      .teacher { grid-template-columns: 1fr; gap: 15px; text-align: center;}
+      .portrait { margin: 0 auto; width: 120px; height: 120px; }
+      .credentials li { justify-content: center; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="scanlines"></div>
+
+  <div class="container">
+    
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> Lançamento Exclusivo em Pirapetinga</div>
+        <h1 class="gradient-text">Domine a tecnologia e o seu <span class="highlight">futuro</span>.</h1>
+        <p class="subheadline">
+          O primeiro curso presencial de Programação e Inteligência Artificial da cidade.
+          Deixe de ser apenas um usuário e aprenda a criar jogos, sites e aplicativos com a mão na massa desde o primeiro dia.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge">
+            <div class="icon">🚀</div>
+            <div><strong>Prática Real</strong><span>Crie projetos de verdade.</span></div>
+          </div>
+          <div class="badge">
+            <div class="icon">👥</div>
+            <div><strong>Turmas VIPs</strong><span>Apenas 2 a 4 alunos.</span></div>
+          </div>
+          <div class="badge">
+            <div class="icon">🤖</div>
+            <div><strong>Foco em IA</strong><span>Use ferramentas de ponta.</span></div>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank">💬 Falar com Professor</a>
+          <a class="btn btn-secondary" href="#jogo">🕹️ Testar o Jogo</a>
+          <div class="microcopy">Aulas semanais • Para jovens a partir de 14 anos</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="topbar">
+          <div class="chip">Presencial</div>
+          <div class="chip yellow">Aprenda na Prática</div>
+        </div>
+        <div class="tech-room">
+          <div class="monitor screen">
+            <div class="bar"></div>
+            <div class="code-lines">
+<span class="a">const</span> aluno = <span class="b">"Desenvolvedor"</span>;
+<span class="a">function</span> iniciarFuturo() {
+  <span class="a">return</span> <span class="b">"Primeiro jogo com IA pronto!"</span>;
+}
+            </div>
+          </div>
+          <div class="monitor small1">
+            <div class="bar"></div>
+            <div class="code-lines">
+<span class="a">HTML & CSS</span>
+<span class="b">JavaScript</span>
+<span class="a">Lógica</span>
+            </div>
+          </div>
+          <div class="floating-ui">
+            <div class="stat-pill">
+              <strong>100% Interativo</strong>
+              <span>Aprenda criando, errando e consertando.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="teacher-wrap">
+      <div class="section-card">
+        <div class="teacher">
+          <div class="portrait">
+            <img src="src/inteligencia-artificial.png" alt="Foto do Professor Inácio Pimenta">
+          </div>
+          <div class="teacher-content">
+            <h3>Inácio Pimenta</h3>
+            <div class="subtitle">Especialista em IA e Automação</div>
+            <p>
+              Atuando como especialista no mercado corporativo, Inácio traz para as aulas desafios e ferramentas que as grandes empresas exigem hoje. Um ensino direto, acolhedor e focado em preparar os jovens para as profissões do futuro.
+            </p>
+            <ul class="credentials">
+              <li>Formado em Técnico de Automação</li>
+              <li>Analista de Processos e Gerente Operacional na eSIMs</li>
+              <li>Gerente de Equipe de Inteligência Artificial</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-wrap" id="jogo">
+      <div class="game-card">
+        <div class="game-intro">
+          <div class="eyebrow"><span class="dot"></span> O que você vai criar</div>
+          <h3>Jogue contra a nossa Inteligência Artificial</h3>
+          <p>
+            Você não vai passar meses estudando teoria chata. Já nas primeiras aulas, você aprende a lógica de programação 
+            necessária para construir do zero um jogo igualzinho a este abaixo. Teste a IA escolhendo a dificuldade!
+          </p>
+          
+          <div class="status" id="status">Sua vez (Você é o X).</div>
+          
+          <div class="game-actions">
+            <button class="mini-btn" id="btnFacil">Fácil</button>
+            <button class="mini-btn active" id="btnMedio">Médio</button>
+            <button class="mini-btn" id="btnDificil">Difícil</button>
+            <button class="mini-btn" id="resetBtn" style="border-color: var(--yellow); color: var(--yellow);">Reiniciar Jogo</button>
+          </div>
+        </div>
+
+        <div class="board-shell">
+          <div class="board" id="board" aria-label="Jogo da velha"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+      <h2 class="section-title">O aprendizado que faz sentido</h2>
+      <p class="section-subtitle">
+        Nada de turmas lotadas ou lousa cheia de textos. A metodologia é desenhada para prender a atenção e gerar 
+        resultados que o aluno tem orgulho de mostrar em casa.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-bubble">💡</div>
+          <h3>Aprenda fazendo</h3>
+          <p>A cada módulo, um novo desafio prático é resolvido. O aluno entende o "porquê" das coisas construindo sistemas reais.</p>
+        </div>
+        <div class="card">
+          <div class="icon-bubble">🤖</div>
+          <h3>Inteligência Artificial</h3>
+          <p>Ensinamos a usar a IA (como ChatGPT) não para "colar", mas como uma ferramenta poderosa para escrever códigos mais rápido.</p>
+        </div>
+        <div class="card">
+          <div class="icon-bubble">🎯</div>
+          <h3>Atenção individual</h3>
+          <p>Turmas com no máximo 4 alunos garantem que ninguém fique para trás com dúvidas ou frustrações no código.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="split" style="margin-top:40px;">
+      <div class="section-card">
+        <h2 class="section-title">A Sua Jornada Começa Aqui</h2>
+        <p class="section-subtitle">
+          Veja o que espera os alunos logo no início da formação.
+        </p>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="phase">1</div>
+            <div><strong>O Despertar da Máquina</strong><span>Introdução à Inteligência Artificial e Lógica. Criação de fluxogramas e dos primeiros assistentes virtuais.</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">2</div>
+            <div><strong>Robótica na Prática</strong><span>A tela ganha vida! Dominando a Linguagem C e programando circuitos, LEDs e botões com Arduino.</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">3</div>
+            <div><strong>A Estrutura da Web</strong><span>Seu espaço na internet. Construção das fundações dos primeiros sites e sistemas usando HTML5.</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">4</div>
+            <div><strong>Design e Estilo</strong><span>Deixando tudo com cara de profissional. Estilização de páginas, cores e layouts modernos com CSS3.</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">5</div>
+            <div><strong>Interatividade e Vida</strong><span>A magia acontece. Uso de JavaScript para criar jogos na web, animações e sistemas dinâmicos.</span></div>
+          </div>
+        </div>
+        
+        <div class="timeline-footer">
+          <p>E a trilha continua...</p>
+          <span>Avançando para automações de alto nível com Python, Bancos de Dados, integrações com N8N e muito mais!</span>
+        </div>
+      </div>
+
+      <div class="section-card" id="preco">
+        <h2 class="section-title" style="text-align: center;">Promoção de Lançamento</h2>
+        <div class="price-card">
+          <div class="promo-badge">🔥 Válida para as primeiras turmas</div>
+          
+          <div class="certificate-badge">
+            🎓 Certificado Incluso
+          </div>
+
+          <div class="price">
+            <span class="old-price">De R$197,00</span>
+            Por R$149,99<small>/mês</small>
+          </div>
+          <p class="price-note">
+            Matrículas abertas. <br>
+            Aulas presenciais, 1 vez por semana.<br>
+            Vagas estritamente limitadas pelo tamanho da turma.
+          </p>
+          <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank" style="width: 100%;">💬 Quero Aproveitar a Promoção</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="footer-cta">
+        <h2>Não deixe seu filho ser apenas um consumidor de telas.</h2>
+        <p>
+          Transforme a paixão dele por computadores em uma profissão sólida e valorizada no mundo todo. 
+          As vagas para a próxima turma já estão acabando.
+        </p>
+        <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank">💬 Garantir a Vaga no WhatsApp</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // --- LÓGICA DO JOGO DA VELHA COM DIFICULDADE ---
+    const boardEl = document.getElementById('board');
+    const statusEl = document.getElementById('status');
+    const resetBtn = document.getElementById('resetBtn');
+    
+    const btnFacil = document.getElementById('btnFacil');
+    const btnMedio = document.getElementById('btnMedio');
+    const btnDificil = document.getElementById('btnDificil');
+
+    let board = Array(9).fill(null);
+    let current = 'X'; // Jogador sempre é X
+    let gameOver = false;
+    let difficulty = 'medio'; // Padrão
+
+    const wins = [
+      [0,1,2], [3,4,5], [6,7,8], // Linhas
+      [0,3,6], [1,4,7], [2,5,8], // Colunas
+      [0,4,8], [2,4,6]           // Diagonais
+    ];
+
+    // Trocar dificuldade
+    function setDifficulty(level, btn) {
+      difficulty = level;
+      btnFacil.classList.remove('active');
+      btnMedio.classList.remove('active');
+      btnDificil.classList.remove('active');
+      btn.classList.add('active');
+      resetGame();
+    }
+    btnFacil.addEventListener('click', () => setDifficulty('facil', btnFacil));
+    btnMedio.addEventListener('click', () => setDifficulty('medio', btnMedio));
+    btnDificil.addEventListener('click', () => setDifficulty('dificil', btnDificil));
+
+    function renderBoard() {
+      boardEl.innerHTML = '';
+      board.forEach((value, idx) => {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        if (value === 'X') cell.classList.add('x-mark');
+        if (value === 'O') cell.classList.add('o-mark');
+        cell.textContent = value || '';
+        cell.addEventListener('click', () => handleMove(idx));
+        boardEl.appendChild(cell);
+      });
+      highlightWinner();
+    }
+
+    function checkWinner(b) {
+      for (const combo of wins) {
+        const [a, c, d] = combo;
+        if (b[a] && b[a] === b[c] && b[a] === b[d]) return { winner: b[a], combo };
+      }
+      if (b.every(Boolean)) return { winner: 'draw', combo: null };
+      return null;
+    }
+
+    function highlightWinner() {
+      const result = checkWinner(board);
+      if (result && result.combo) {
+        result.combo.forEach(i => boardEl.children[i].classList.add('win'));
+      }
+    }
+
+    function handleMove(idx) {
+      if (gameOver || board[idx] || current !== 'X') return;
+      
+      board[idx] = 'X';
+      renderBoard();
+      
+      const result = checkWinner(board);
+      if (result) return finish(result);
+      
+      current = 'O';
+      statusEl.textContent = 'IA pensando...';
+      setTimeout(aiMove, 500); // Pequeno atraso para parecer que a IA está "pensando"
+    }
+
+    // Lógica da Inteligência Artificial
+    function aiMove() {
+      if (gameOver) return;
+      const available = board.map((v, i) => v ? null : i).filter(v => v !== null);
+      let move = null;
+
+      // Função auxiliar: avalia se uma jogada vence o jogo na hora
+      const scoreMove = (player) => {
+        for (const idx of available) {
+          const copy = [...board];
+          copy[idx] = player;
+          if (checkWinner(copy)?.winner === player) return idx;
+        }
+        return null;
+      };
+
+      if (difficulty === 'facil') {
+        // Fácil: Totalmente aleatório
+        move = available[Math.floor(Math.random() * available.length)];
+      } 
+      else if (difficulty === 'medio') {
+        // Médio: Tenta ganhar, se não der, tenta bloquear o jogador. Senão, aleatório.
+        const winNow = scoreMove('O');
+        const blockNow = scoreMove('X');
+        
+        if (winNow !== null) move = winNow;
+        else if (blockNow !== null) move = blockNow;
+        else move = available[Math.floor(Math.random() * available.length)];
+      } 
+      else {
+        // Difícil: Imbatível. Ganha > Bloqueia > Centro > Quinas > Lados
+        const winNow = scoreMove('O');
+        const blockNow = scoreMove('X');
+        
+        if (winNow !== null) move = winNow;
+        else if (blockNow !== null) move = blockNow;
+        else if (!board[4]) move = 4; // Pega o centro
+        else {
+          // Pega quinas vazias
+          const corners = [0,2,6,8].filter(i => !board[i]);
+          if (corners.length > 0) move = corners[0];
+          else move = available[0]; // Pega o que sobrar (lados)
+        }
+      }
+
+      if (move !== null) board[move] = 'O';
+      renderBoard();
+      
+      const result = checkWinner(board);
+      if (result) return finish(result);
+      
+      current = 'X';
+      statusEl.textContent = 'Sua vez (Você é o X).';
+    }
+
+    function finish(result) {
+      gameOver = true;
+      if (result.winner === 'draw') {
+        statusEl.textContent = 'Deu Velha! Empatou.';
+      } else {
+        statusEl.textContent = result.winner === 'X' ? '🎉 Parabéns! Você venceu a IA!' : '🤖 A IA venceu. Tente novamente!';
+      }
+    }
+
+    function resetGame() {
+      board = Array(9).fill(null);
+      current = 'X';
+      gameOver = false;
+      statusEl.textContent = 'Sua vez (Você é o X).';
+      renderBoard();
+    }
+
+    resetBtn.addEventListener('click', resetGame);
+    renderBoard(); // Inicializa
+  </script>
+</body>
+</html>
