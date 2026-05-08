@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curso Presencial de IA e Programação | Pirapetinga</title>
-  <meta name="description" content="Aprenda Programação e Inteligência Artificial do zero em Pirapetinga. Turmas reduzidas e projetos práticos desde a primeira aula." />
+  <title>Curso Presencial de Programação, Robótica e IA | Pirapetinga</title>
+  <meta name="description" content="Curso presencial de Programação, Robótica e Inteligência Artificial em Pirapetinga. Aprendizado prático, turmas reduzidas e projetos que despertam o interesse dos adolescentes." />
   <style>
     :root {
-      /* Cores baseadas na identidade visual das artes */
       --bg: #040b17;
       --bg2: #08162e;
       --card: rgba(10, 25, 55, 0.75);
@@ -20,7 +19,7 @@
       --yellow: #ffc107;
       --orange: #f97316;
       --green: #22c55e;
-      --red: #ef4444; 
+      --red: #ef4444;
       --purple: #8b5cf6;
       --shadow: 0 20px 60px rgba(0,0,0,0.5);
       --radius: 24px;
@@ -41,7 +40,6 @@
       overflow-x: hidden;
     }
 
-    /* Ambient effects */
     .grid, .scanlines {
       position: fixed;
       inset: 0;
@@ -78,15 +76,15 @@
 
     header.hero {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.08fr .92fr;
       gap: 24px;
       align-items: stretch;
-      min-height: 80vh;
+      min-height: 82vh;
       padding-top: 12px;
       perspective: 1400px;
     }
 
-    .hero-copy, .hero-visual, .card, .section-card, .price-card, .timeline-item, .game-card {
+    .hero-copy, .hero-visual, .card, .section-card, .price-card, .timeline-item, .game-card, .faq-item {
       backdrop-filter: var(--glass);
       -webkit-backdrop-filter: var(--glass);
       background: linear-gradient(180deg, rgba(14,34,74,.6), rgba(8,22,46,.8));
@@ -157,7 +155,7 @@
       color: var(--muted);
       font-size: clamp(1rem, 1.35vw, 1.18rem);
       line-height: 1.7;
-      max-width: 64ch;
+      max-width: 66ch;
     }
 
     .hero-badges {
@@ -182,7 +180,7 @@
       display: grid; place-items: center;
       flex: 0 0 auto;
     }
-    .badge strong { display: block; font-size: .98rem; margin-bottom: 4px; color: #fff;}
+    .badge strong { display: block; font-size: .98rem; margin-bottom: 4px; color: #fff; }
     .badge span { color: var(--muted); font-size: .88rem; line-height: 1.4; }
 
     .cta-row {
@@ -339,7 +337,6 @@
     }
     .section-card { padding: 30px; }
 
-    /* Timeline Atualizada */
     .timeline { display: grid; gap: 12px; position: relative; }
     .timeline::before {
       content: '';
@@ -348,7 +345,7 @@
       top: 20px;
       bottom: 20px;
       width: 2px;
-      background: dashed 2px rgba(255, 193, 7, 0.3);
+      background: linear-gradient(to bottom, rgba(255, 193, 7, 0.35), rgba(0,229,255,.25));
       z-index: 0;
     }
     .timeline-item {
@@ -375,7 +372,7 @@
       border: 2px solid var(--orange);
       box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
     }
-    .timeline-item strong { display: block; margin-bottom: 6px; font-size: 1.1rem; color: #fff;}
+    .timeline-item strong { display: block; margin-bottom: 6px; font-size: 1.1rem; color: #fff; }
     .timeline-item span { color: var(--muted); line-height: 1.5; font-size: 0.95rem; }
     .timeline-footer {
       text-align: center;
@@ -388,7 +385,6 @@
     .timeline-footer p { margin: 0; color: var(--cyan); font-weight: 600; }
     .timeline-footer span { font-size: 0.9rem; color: var(--muted); }
 
-    /* Professor Card Aprimorado */
     .teacher-wrap { margin-top: 24px; }
     .teacher {
       display: grid;
@@ -397,14 +393,14 @@
       align-items: center;
     }
     .portrait {
-      width: 140px; 
-      height: 140px; /* Transformado em círculo para estética mais moderna */
-      border-radius: 50%; 
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
       background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(0,229,255,.2));
       border: 3px solid var(--purple);
-      display: grid; 
+      display: grid;
       place-items: center;
-      overflow: hidden; 
+      overflow: hidden;
       box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
     }
     .portrait img {
@@ -438,12 +434,11 @@
       font-size: 0.8rem;
     }
 
-    /* Caixa de Preço */
-    .price-card { 
-      padding: 36px 32px; 
-      text-align: center; 
-      background: rgba(14,34,74,.6); 
-      border-color: var(--red); 
+    .price-card {
+      padding: 36px 32px;
+      text-align: center;
+      background: rgba(14,34,74,.6);
+      border-color: var(--red);
       position: relative;
     }
     .price-card::before {
@@ -487,8 +482,8 @@
       margin: 5px 0 15px;
     }
     .price small { font-size: 1.2rem; color: var(--cyan); }
-    .price-note { color: var(--muted); line-height: 1.6; margin-bottom: 16px; font-size: 1.05rem;}
-    
+    .price-note { color: var(--muted); line-height: 1.6; margin-bottom: 16px; font-size: 1.05rem; }
+
     .certificate-badge {
       display: flex;
       align-items: center;
@@ -503,8 +498,7 @@
       font-weight: 600;
       font-size: 0.95rem;
     }
-    
-    /* Jogo da Velha */
+
     .game-wrap { margin-top: 24px; }
     .game-card {
       padding: 30px;
@@ -516,8 +510,7 @@
       border-color: var(--yellow);
     }
     .game-intro h3 { margin: 0 0 14px; font-size: 1.5rem; color: var(--yellow); }
-    .game-intro p { margin: 0 0 20px; color: var(--muted); line-height: 1.6; font-size: 1.05rem;}
-    
+    .game-intro p { margin: 0 0 20px; color: var(--muted); line-height: 1.6; font-size: 1.05rem; }
     .status {
       margin: 16px 0;
       color: var(--cyan);
@@ -525,7 +518,6 @@
       font-size: 1.1rem;
       min-height: 1.6em;
     }
-    
     .game-actions {
       display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;
     }
@@ -578,11 +570,29 @@
     .cell:hover { background: rgba(37,99,235,.4); }
     .cell.x-mark { color: var(--cyan); }
     .cell.o-mark { color: var(--yellow); }
-    
     .cell.win {
       background: rgba(34,197,94,.2);
       border-color: var(--green);
       text-shadow: 0 0 15px var(--green);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .faq-item {
+      padding: 22px;
+    }
+    .faq-item h3 {
+      margin: 0 0 10px;
+      color: var(--cyan);
+      font-size: 1.08rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
     .footer-cta {
@@ -593,8 +603,8 @@
       background: radial-gradient(circle at center, rgba(14,34,74,.8), var(--bg));
       text-align: center;
     }
-    .footer-cta h2 { margin: 0 0 16px; font-size: clamp(1.8rem, 3vw, 2.5rem); color: #fff;}
-    .footer-cta p { margin: 0 auto 24px; color: var(--muted); line-height: 1.7; max-width: 70ch; font-size: 1.1rem;}
+    .footer-cta h2 { margin: 0 0 16px; font-size: clamp(1.8rem, 3vw, 2.5rem); color: #fff; }
+    .footer-cta p { margin: 0 auto 24px; color: var(--muted); line-height: 1.7; max-width: 70ch; font-size: 1.1rem; }
 
     .section-divider {
       height: 1px; width: 100%;
@@ -603,19 +613,18 @@
     }
 
     @media (max-width: 980px) {
-      header.hero, .split, .game-card, .grid-3, .hero-badges, .teacher { grid-template-columns: 1fr; }
+      header.hero, .split, .game-card, .grid-3, .hero-badges, .teacher, .faq-grid { grid-template-columns: 1fr; }
       .hero-visual { min-height: 500px; }
-      .game-card { gap: 20px; padding: 20px;}
+      .game-card { gap: 20px; padding: 20px; }
       .timeline::before { left: 35px; }
     }
     @media (max-width: 640px) {
       .container { width: min(100% - 16px, 1180px); }
       .hero-copy, .section-card, .price-card, .footer-cta { padding: 20px; }
-      .timeline-item { grid-template-columns: 50px 1fr; gap: 12px;}
-      .phase { width: 40px; height: 40px; font-size: 1.2rem;}
+      .timeline-item { grid-template-columns: 50px 1fr; gap: 12px; }
+      .phase { width: 40px; height: 40px; font-size: 1.2rem; }
       .timeline::before { left: 40px; }
-      
-      .teacher { grid-template-columns: 1fr; gap: 15px; text-align: center;}
+      .teacher { grid-template-columns: 1fr; gap: 15px; text-align: center; }
       .portrait { margin: 0 auto; width: 120px; height: 120px; }
       .credentials li { justify-content: center; text-align: left; }
     }
@@ -626,65 +635,63 @@
   <div class="scanlines"></div>
 
   <div class="container">
-    
     <header class="hero">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span> Lançamento Exclusivo em Pirapetinga</div>
-        <h1 class="gradient-text">Domine a tecnologia e o seu <span class="highlight">futuro</span>.</h1>
+        <div class="eyebrow"><span class="dot"></span> Lançamento Presencial em Pirapetinga</div>
+        <h1 class="gradient-text">Programação, Robótica e IA para adolescentes que querem <span class="highlight">criar o futuro</span>.</h1>
         <p class="subheadline">
-          O primeiro curso presencial de Programação e Inteligência Artificial da cidade.
-          Deixe de ser apenas um usuário e aprenda a criar jogos, sites e aplicativos com a mão na massa desde o primeiro dia.
+          Um curso presencial feito para jovens que gostam de tecnologia, jogos, computadores e desafios. Aqui eles aprendem fazendo: constroem projetos reais, desenvolvem raciocínio lógico, trabalham em equipe e descobrem como a inteligência artificial e a robótica estão mudando o mundo.
         </p>
 
         <div class="hero-badges">
           <div class="badge">
             <div class="icon">🚀</div>
-            <div><strong>Prática Real</strong><span>Crie projetos de verdade.</span></div>
+            <div><strong>Aprendizado que prende atenção</strong><span>Conteúdo dinâmico, visual e prático.</span></div>
           </div>
           <div class="badge">
             <div class="icon">👥</div>
-            <div><strong>Turmas VIPs</strong><span>Apenas 2 a 4 alunos.</span></div>
+            <div><strong>Turmas pequenas</strong><span>Mais foco, mais suporte e mais evolução.</span></div>
           </div>
           <div class="badge">
             <div class="icon">🤖</div>
-            <div><strong>Foco em IA</strong><span>Use ferramentas de ponta.</span></div>
+            <div><strong>IA na prática</strong><span>Ferramentas modernas para aprender melhor.</span></div>
           </div>
         </div>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank">💬 Falar com Professor</a>
-          <a class="btn btn-secondary" href="#jogo">🕹️ Testar o Jogo</a>
-          <div class="microcopy">Aulas semanais • Para jovens a partir de 14 anos</div>
+          <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20Programa%C3%A7%C3%A3o%2C%20Rob%C3%B3tica%20e%20IA." target="_blank" rel="noopener noreferrer">💬 Falar no WhatsApp</a>
+          <a class="btn btn-secondary" href="#motivos">✨ Ver por que isso importa</a>
+          <div class="microcopy">Aulas presenciais • Para adolescentes • Projetos reais desde o começo</div>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="topbar">
           <div class="chip">Presencial</div>
-          <div class="chip yellow">Aprenda na Prática</div>
+          <div class="chip yellow">Mão na massa</div>
         </div>
         <div class="tech-room">
           <div class="monitor screen">
             <div class="bar"></div>
             <div class="code-lines">
-<span class="a">const</span> aluno = <span class="b">"Desenvolvedor"</span>;
-<span class="a">function</span> iniciarFuturo() {
-  <span class="a">return</span> <span class="b">"Primeiro jogo com IA pronto!"</span>;
+<span class="a">const</span> futuro = <span class="b">"Começa aqui"</span>;
+<span class="a">function</span> criarProjeto() {
+  <span class="a">return</span> <span class="b">"Robôs, sites e IA"</span>;
 }
             </div>
           </div>
           <div class="monitor small1">
             <div class="bar"></div>
             <div class="code-lines">
-<span class="a">HTML & CSS</span>
-<span class="b">JavaScript</span>
 <span class="a">Lógica</span>
+<span class="b">Robótica</span>
+<span class="a">IA</span>
             </div>
           </div>
           <div class="floating-ui">
             <div class="stat-pill">
-              <strong>100% Interativo</strong>
-              <span>Aprenda criando, errando e consertando.</span>
+              <strong>Aprender sem monotonia</strong>
+              <span>Cada aula termina com algo que o aluno consegue mostrar.</span>
             </div>
           </div>
         </div>
@@ -699,16 +706,40 @@
           </div>
           <div class="teacher-content">
             <h3>Inácio Pimenta</h3>
-            <div class="subtitle">Especialista em IA e Automação</div>
+            <div class="subtitle">Tecnologia, automação e IA aplicadas ao mundo real</div>
             <p>
-              Atuando como especialista no mercado corporativo, Inácio traz para as aulas desafios e ferramentas que as grandes empresas exigem hoje. Um ensino direto, acolhedor e focado em preparar os jovens para as profissões do futuro.
+              O curso foi pensado para ensinar tecnologia de um jeito acessível, interessante e útil. A ideia é transformar curiosidade em habilidade, e habilidade em confiança para criar soluções, jogos, automações e projetos com IA.
             </p>
             <ul class="credentials">
-              <li>Formado em Técnico de Automação</li>
-              <li>Analista de Processos e Gerente Operacional na eSIMs</li>
-              <li>Gerente de Equipe de Inteligência Artificial</li>
+              <li>Formação técnica em Automação</li>
+              <li>Experiência com IA, processos e tecnologia aplicada</li>
+              <li>Ensino focado em prática, clareza e evolução real</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="motivos">
+      <h2 class="section-title">Por que programação, robótica e IA são tão interessantes para adolescentes?</h2>
+      <p class="section-subtitle">
+        Porque mexem com coisas que eles já gostam: tecnologia, jogos, desafios, criação e resultado visível. Além disso, ajudam a desenvolver habilidades que fazem diferença dentro e fora da escola.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-bubble">🧠</div>
+          <h3>Desenvolvem raciocínio lógico</h3>
+          <p>Programar ensina a pensar em etapas, resolver problemas e tomar decisões com mais clareza. É um treino excelente para a mente.</p>
+        </div>
+        <div class="card">
+          <div class="icon-bubble">🎮</div>
+          <h3>Conectam com o universo deles</h3>
+          <p>Sites, jogos, robôs e inteligência artificial têm apelo imediato para adolescentes. Eles aprendem com mais vontade quando veem sentido no que estão fazendo.</p>
+        </div>
+        <div class="card">
+          <div class="icon-bubble">🚀</div>
+          <h3>Preparam para o futuro</h3>
+          <p>IA e automação estão em praticamente toda profissão moderna. Começar cedo abre portas para estágio, freelas, projetos e carreiras muito fortes.</p>
         </div>
       </div>
     </section>
@@ -716,15 +747,12 @@
     <section class="game-wrap" id="jogo">
       <div class="game-card">
         <div class="game-intro">
-          <div class="eyebrow"><span class="dot"></span> O que você vai criar</div>
-          <h3>Jogue contra a nossa Inteligência Artificial</h3>
+          <div class="eyebrow"><span class="dot"></span> Exemplo da metodologia</div>
+          <h3>Aprender criando jogos deixa tudo mais divertido</h3>
           <p>
-            Você não vai passar meses estudando teoria chata. Já nas primeiras aulas, você aprende a lógica de programação 
-            necessária para construir do zero um jogo igualzinho a este abaixo. Teste a IA escolhendo a dificuldade!
+            Em vez de começar com teoria pesada, o aluno vê resultado rápido. Isso aumenta o interesse, reduz a frustração e mostra na prática que programação é uma ferramenta para transformar ideias em algo real.
           </p>
-          
           <div class="status" id="status">Sua vez (Você é o X).</div>
-          
           <div class="game-actions">
             <button class="mini-btn" id="btnFacil">Fácil</button>
             <button class="mini-btn active" id="btnMedio">Médio</button>
@@ -742,123 +770,138 @@
     <div class="section-divider"></div>
 
     <section>
-      <h2 class="section-title">O aprendizado que faz sentido</h2>
+      <h2 class="section-title">O que o aluno aprende ao longo do curso</h2>
       <p class="section-subtitle">
-        Nada de turmas lotadas ou lousa cheia de textos. A metodologia é desenhada para prender a atenção e gerar 
-        resultados que o aluno tem orgulho de mostrar em casa.
+        A formação foi organizada para começar simples, ganhar confiança rápido e evoluir para projetos cada vez mais interessantes.
       </p>
-      <div class="grid-3">
-        <div class="card">
-          <div class="icon-bubble">💡</div>
-          <h3>Aprenda fazendo</h3>
-          <p>A cada módulo, um novo desafio prático é resolvido. O aluno entende o "porquê" das coisas construindo sistemas reais.</p>
+
+      <div class="split">
+        <div class="section-card">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="phase">1</div>
+              <div><strong>Primeiros passos na lógica</strong><span>Entendimento de como pensar como programador, criar raciocínio estruturado e usar a tecnologia com intenção.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="phase">2</div>
+              <div><strong>Robótica e interação</strong><span>Aprendizado prático com componentes, sensores, comandos e introdução ao comportamento de máquinas inteligentes.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="phase">3</div>
+              <div><strong>Criação para a web</strong><span>Construção de páginas, estrutura visual e elementos interativos que mostram como sites e sistemas nascem.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="phase">4</div>
+              <div><strong>IA como aliada</strong><span>Uso inteligente de ferramentas de IA para estudar melhor, criar mais rápido e entender como essa tecnologia já faz parte do presente.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="phase">5</div>
+              <div><strong>Projetos com identidade</strong><span>O aluno sai com criações que podem entrar no portfólio, estimular o orgulho e mostrar para família e amigos o que aprendeu.</span></div>
+            </div>
+          </div>
+          <div class="timeline-footer">
+            <p>Evolução contínua</p>
+            <span>Conteúdo pensado para adolescentes que gostam de ver resultado, aprender na prática e construir algo com as próprias mãos.</span>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon-bubble">🤖</div>
-          <h3>Inteligência Artificial</h3>
-          <p>Ensinamos a usar a IA (como ChatGPT) não para "colar", mas como uma ferramenta poderosa para escrever códigos mais rápido.</p>
-        </div>
-        <div class="card">
-          <div class="icon-bubble">🎯</div>
-          <h3>Atenção individual</h3>
-          <p>Turmas com no máximo 4 alunos garantem que ninguém fique para trás com dúvidas ou frustrações no código.</p>
+
+        <div class="section-card">
+          <h2 class="section-title">Para pais e responsáveis</h2>
+          <p class="section-subtitle">
+            Programação e robótica não são só “coisa de computador”. Elas ajudam o adolescente a ganhar disciplina, concentração, criatividade, autonomia e confiança para resolver problemas.
+          </p>
+          <div class="grid-3" style="grid-template-columns:1fr; gap:12px;">
+            <div class="card" style="padding:18px;">
+              <h3>Mais foco</h3>
+              <p>Projetos com começo, meio e fim estimulam atenção e persistência.</p>
+            </div>
+            <div class="card" style="padding:18px;">
+              <h3>Mais confiança</h3>
+              <p>Cada avanço mostra que ele é capaz de construir algo útil sozinho.</p>
+            </div>
+            <div class="card" style="padding:18px;">
+              <h3>Mais futuro</h3>
+              <p>As habilidades aprendidas servem para estudo, carreira e projetos próprios.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="split" style="margin-top:40px;">
-      <div class="section-card">
-        <h2 class="section-title">A Sua Jornada Começa Aqui</h2>
-        <p class="section-subtitle">
-          Veja o que espera os alunos logo no início da formação.
-        </p>
-        
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="phase">1</div>
-            <div><strong>O Despertar da Máquina</strong><span>Introdução à Inteligência Artificial e Lógica. Criação de fluxogramas e dos primeiros assistentes virtuais.</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="phase">2</div>
-            <div><strong>Robótica na Prática</strong><span>A tela ganha vida! Dominando a Linguagem C e programando circuitos, LEDs e botões com Arduino.</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="phase">3</div>
-            <div><strong>A Estrutura da Web</strong><span>Seu espaço na internet. Construção das fundações dos primeiros sites e sistemas usando HTML5.</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="phase">4</div>
-            <div><strong>Design e Estilo</strong><span>Deixando tudo com cara de profissional. Estilização de páginas, cores e layouts modernos com CSS3.</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="phase">5</div>
-            <div><strong>Interatividade e Vida</strong><span>A magia acontece. Uso de JavaScript para criar jogos na web, animações e sistemas dinâmicos.</span></div>
+    <section style="margin-top:40px;">
+      <div class="split">
+        <div class="section-card" id="preco">
+          <h2 class="section-title" style="text-align: center;">Promoção de lançamento</h2>
+          <div class="price-card">
+            <div class="promo-badge">Vagas limitadas nas primeiras turmas</div>
+            <div class="certificate-badge">🎓 Certificado Incluso</div>
+            <div class="price">
+              <span class="old-price">De R$197,00</span>
+              Por R$149,99<small>/mês</small>
+            </div>
+            <p class="price-note">
+              Aulas presenciais, 1 vez por semana.<br>
+              Turmas reduzidas para garantir atenção individual.<br>
+              Ideal para adolescentes que gostam de tecnologia e querem aprender de verdade.
+            </p>
+            <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Quero%20garantir%20uma%20vaga%20no%20curso%20de%20Programa%C3%A7%C3%A3o%2C%20Rob%C3%B3tica%20e%20IA." target="_blank" rel="noopener noreferrer" style="width: 100%;">💬 Garantir minha vaga</a>
           </div>
         </div>
-        
-        <div class="timeline-footer">
-          <p>E a trilha continua...</p>
-          <span>Avançando para automações de alto nível com Python, Bancos de Dados, integrações com N8N e muito mais!</span>
-        </div>
-      </div>
 
-      <div class="section-card" id="preco">
-        <h2 class="section-title" style="text-align: center;">Promoção de Lançamento</h2>
-        <div class="price-card">
-          <div class="promo-badge">🔥 Válida para as primeiras turmas</div>
-          
-          <div class="certificate-badge">
-            🎓 Certificado Incluso
+        <div class="section-card">
+          <h2 class="section-title">Dúvidas comuns</h2>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>Precisa saber programar?</h3>
+              <p>Não. O curso foi pensado para começar do zero, de forma simples e progressiva.</p>
+            </div>
+            <div class="faq-item">
+              <h3>É muito difícil para adolescente?</h3>
+              <p>Não quando o conteúdo é bem explicado e conectado com jogos, projetos e exemplos práticos.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Ele vai aprender IA mesmo?</h3>
+              <p>Sim. A proposta é usar IA como ferramenta de criação, estudo e produtividade.</p>
+            </div>
+            <div class="faq-item">
+              <h3>O que ele leva ao final?</h3>
+              <p>Mais confiança, novas habilidades, projetos criados e uma base forte para o futuro.</p>
+            </div>
           </div>
-
-          <div class="price">
-            <span class="old-price">De R$197,00</span>
-            Por R$149,99<small>/mês</small>
-          </div>
-          <p class="price-note">
-            Matrículas abertas. <br>
-            Aulas presenciais, 1 vez por semana.<br>
-            Vagas estritamente limitadas pelo tamanho da turma.
-          </p>
-          <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank" style="width: 100%;">💬 Quero Aproveitar a Promoção</a>
         </div>
       </div>
     </section>
 
     <section>
       <div class="footer-cta">
-        <h2>Não deixe seu filho ser apenas um consumidor de telas.</h2>
+        <h2>Transforme curiosidade em habilidade.</h2>
         <p>
-          Transforme a paixão dele por computadores em uma profissão sólida e valorizada no mundo todo. 
-          As vagas para a próxima turma já estão acabando.
+          Em vez de apenas consumir tecnologia, o adolescente passa a entender, criar e usar programação, robótica e IA para desenvolver projetos de verdade. É uma experiência que pode marcar o começo de uma nova trajetória.
         </p>
-        <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20IA%20e%20programa%C3%A7%C3%A3o!" target="_blank">💬 Garantir a Vaga no WhatsApp</a>
+        <a class="btn btn-primary" href="https://wa.me/553298179372?text=Ol%C3%A1!%20Tenho%20interesse%20no%20curso%20de%20Programa%C3%A7%C3%A3o%2C%20Rob%C3%B3tica%20e%20IA." target="_blank" rel="noopener noreferrer">💬 Falar agora no WhatsApp</a>
       </div>
     </section>
   </div>
 
   <script>
-    // --- LÓGICA DO JOGO DA VELHA COM DIFICULDADE ---
     const boardEl = document.getElementById('board');
     const statusEl = document.getElementById('status');
     const resetBtn = document.getElementById('resetBtn');
-    
     const btnFacil = document.getElementById('btnFacil');
     const btnMedio = document.getElementById('btnMedio');
     const btnDificil = document.getElementById('btnDificil');
 
     let board = Array(9).fill(null);
-    let current = 'X'; // Jogador sempre é X
+    let current = 'X';
     let gameOver = false;
-    let difficulty = 'medio'; // Padrão
+    let difficulty = 'medio';
 
     const wins = [
-      [0,1,2], [3,4,5], [6,7,8], // Linhas
-      [0,3,6], [1,4,7], [2,5,8], // Colunas
-      [0,4,8], [2,4,6]           // Diagonais
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
     ];
 
-    // Trocar dificuldade
     function setDifficulty(level, btn) {
       difficulty = level;
       btnFacil.classList.remove('active');
@@ -867,6 +910,7 @@
       btn.classList.add('active');
       resetGame();
     }
+
     btnFacil.addEventListener('click', () => setDifficulty('facil', btnFacil));
     btnMedio.addEventListener('click', () => setDifficulty('medio', btnMedio));
     btnDificil.addEventListener('click', () => setDifficulty('dificil', btnDificil));
@@ -903,25 +947,22 @@
 
     function handleMove(idx) {
       if (gameOver || board[idx] || current !== 'X') return;
-      
       board[idx] = 'X';
       renderBoard();
-      
+
       const result = checkWinner(board);
       if (result) return finish(result);
-      
+
       current = 'O';
       statusEl.textContent = 'IA pensando...';
-      setTimeout(aiMove, 500); // Pequeno atraso para parecer que a IA está "pensando"
+      setTimeout(aiMove, 450);
     }
 
-    // Lógica da Inteligência Artificial
     function aiMove() {
       if (gameOver) return;
       const available = board.map((v, i) => v ? null : i).filter(v => v !== null);
       let move = null;
 
-      // Função auxiliar: avalia se uma jogada vence o jogo na hora
       const scoreMove = (player) => {
         for (const idx of available) {
           const copy = [...board];
@@ -932,40 +973,31 @@
       };
 
       if (difficulty === 'facil') {
-        // Fácil: Totalmente aleatório
         move = available[Math.floor(Math.random() * available.length)];
-      } 
-      else if (difficulty === 'medio') {
-        // Médio: Tenta ganhar, se não der, tenta bloquear o jogador. Senão, aleatório.
+      } else if (difficulty === 'medio') {
         const winNow = scoreMove('O');
         const blockNow = scoreMove('X');
-        
         if (winNow !== null) move = winNow;
         else if (blockNow !== null) move = blockNow;
         else move = available[Math.floor(Math.random() * available.length)];
-      } 
-      else {
-        // Difícil: Imbatível. Ganha > Bloqueia > Centro > Quinas > Lados
+      } else {
         const winNow = scoreMove('O');
         const blockNow = scoreMove('X');
-        
         if (winNow !== null) move = winNow;
         else if (blockNow !== null) move = blockNow;
-        else if (!board[4]) move = 4; // Pega o centro
+        else if (!board[4]) move = 4;
         else {
-          // Pega quinas vazias
           const corners = [0,2,6,8].filter(i => !board[i]);
-          if (corners.length > 0) move = corners[0];
-          else move = available[0]; // Pega o que sobrar (lados)
+          move = corners.length > 0 ? corners[0] : available[0];
         }
       }
 
       if (move !== null) board[move] = 'O';
       renderBoard();
-      
+
       const result = checkWinner(board);
       if (result) return finish(result);
-      
+
       current = 'X';
       statusEl.textContent = 'Sua vez (Você é o X).';
     }
@@ -973,9 +1005,9 @@
     function finish(result) {
       gameOver = true;
       if (result.winner === 'draw') {
-        statusEl.textContent = 'Deu Velha! Empatou.';
+        statusEl.textContent = 'Deu velha! Empatou.';
       } else {
-        statusEl.textContent = result.winner === 'X' ? '🎉 Parabéns! Você venceu a IA!' : '🤖 A IA venceu. Tente novamente!';
+        statusEl.textContent = result.winner === 'X' ? '🎉 Você venceu a IA!' : '🤖 A IA venceu. Tente novamente!';
       }
     }
 
@@ -988,7 +1020,7 @@
     }
 
     resetBtn.addEventListener('click', resetGame);
-    renderBoard(); // Inicializa
+    renderBoard();
   </script>
 </body>
 </html>
